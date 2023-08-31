@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdbool.h>  // for bool type
+#include <unistd.h>   // for sleep()
+
+void checkBinStatus(bool input1, bool input2, bool *a3_bin_full);
+
+int main() {
+    bool input1 = false;  // initialized, will be updated by real-world input
+    bool input2 = false;  // initialized, will be updated by real-world input
+    bool a3_bin_full = false;  // initially false
+
+    // Your code for getting real-world input here
+    // For demonstration, let's assume input1 and input2 are set to true
+    input1 = true;
+    input2 = true;
+
+    // Check the bin status based on inputs
+    checkBinStatus(input1, input2, &a3_bin_full);
+
+    // Output the result
+    if (a3_bin_full) {
+        printf("A3 Bin Full!\n");
+    } else {
+        printf("A3 Bin Not Full.\n");
+    }
+
+    return 0;
+}
+
+void checkBinStatus(bool input1, bool input2, bool *a3_bin_full) {
+    if (input1 && input2) {
+        printf("Both inputs are energized. Waiting for 3 seconds to check A3 Bin status...\n");
+        
+        // Wait for 3 seconds
+        sleep(3);
+
+        // Now set A3 Bin as Full
+        *a3_bin_full = true;
+    } else {
+        *a3_bin_full = false;  // explicitly setting it to false
+    }
+}
